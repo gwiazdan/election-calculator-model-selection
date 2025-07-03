@@ -1,6 +1,7 @@
 import data_loading as dl
 
 def linear_function(ref_x, keys, df, total, x=0.61):
+    
     mse = 0
     for key in keys:
         sum = 0
