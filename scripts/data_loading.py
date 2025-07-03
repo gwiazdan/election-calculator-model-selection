@@ -25,7 +25,7 @@ def load_all_df():
     for file in json_files:
         df, file_keys = load_json_to_dataframe(file)
         if not keys: keys = file_keys
-        dfs.append(df)
+        dfs.append(df.fillna(0))
     return dfs, keys
             
 

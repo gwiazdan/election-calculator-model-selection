@@ -9,18 +9,18 @@ class function_fitter:
         self.df = dfs[i]
         self.keys = keys
         self.total = self.df['totalVotes'].sum()
+        self.ref_x = dl.calculate_ref_results(self.df, self.keys)
         
     def calculate_mse(self, func, x=0.61):
         if not callable(func):
             raise TypeError("The provided argument must be a callable function.")
-        ref_x = dl.calculate_ref_results(self.df, self.keys)
-        
-        mse, rmse = func(df=self.df, ref_x=ref_x, keys=self.keys, total=self.total, x=x)
+
+        mse, rmse = func(df=self.df, ref_x=self.ref_x, keys=self.keys, total=self.total, x=x)
         
         time_sum = 0
         for i in range(10):
             start_time = time.time()
-            func(df=self.df, ref_x=ref_x, keys=self.keys, total=self.total, x=x)
+            func(df=self.df, ref_x=self.ref_x, keys=self.keys, total=self.total, x=x)
             end_time = time.time()
             time_sum += (end_time - start_time)
         
