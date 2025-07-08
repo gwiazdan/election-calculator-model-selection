@@ -16,7 +16,11 @@ def load_json_to_dataframe(filename):
     keys = df['votes'].iloc[0].keys()
     votes_df = df['votes'].apply(pd.Series)
     df_expanded = pd.concat([df.drop(columns=['votes']), votes_df], axis=1)
-    return df_expanded, list(keys)
+    keys = list(keys)
+    keys.append('others')
+    keys.remove('mn')
+    df_expanded['others'] = df_expanded['totalVotes'] - df_expanded[list(keys[:-1])].sum(axis=1)
+    return df_expanded, keys 
 
 def load_all_df():
     dfs = []
@@ -28,7 +32,6 @@ def load_all_df():
         dfs.append(df.fillna(0))
     return dfs, keys
             
-
 def calculate_ref_results(df, keys):
     dict = {}
     total = df['totalVotes'].sum()
