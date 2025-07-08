@@ -10,9 +10,6 @@ class function_fitter:
         self.keys = keys
         self.total = self.df['totalVotes'].sum()
         self.ref_x = dl.calculate_ref_results(self.df, self.keys)
-    
-    def get_keys(self):
-        return self.keys
         
     def calculate_mse(self, func, results):
         error = 0

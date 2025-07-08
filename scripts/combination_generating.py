@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 def random_partition(n=8, total=1.0, precision=0.01):
     steps = int(total / precision)
@@ -15,7 +16,6 @@ def generate_results(keys):
             combination_dict[keys[i]] = r[i]
         dicts.append(combination_dict)
     return dicts
-
 
 def cyclic_rotations(lst):
     return [lst[i:] + lst[:i] for i in range(len(lst))]

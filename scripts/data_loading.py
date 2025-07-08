@@ -4,7 +4,6 @@ import pandas as pd
 
 folder_path = "scripts/data/"
 
-
 def list_json_files():
     return [f for f in os.listdir(folder_path) if f.endswith('.json')]
 
