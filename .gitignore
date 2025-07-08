@@ -1,3 +1,4 @@
 .vscode/settings.json
 .conda/
 scripts/__pycache__/
+__pycache__
